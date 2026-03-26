@@ -10,6 +10,8 @@ The contained projects are programmed using Structured Text (ST). For more info,
 
 ## Factory I/O References
 
+- Each project folder contains a `scene` folder with the Factory I/O scene file and the I/O mapping.
+- Open the scene file in Factory I/O and control the simulation through CODESYS SoftPLC.
 - Factory I/O scenes manual: https://docs.factoryio.com/manual/scenes/
 - CODESYS + Factory I/O tutorials: https://docs.factoryio.com/tutorials/codesys/
 
