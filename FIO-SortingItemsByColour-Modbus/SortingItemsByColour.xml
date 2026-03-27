@@ -1,0 +1,1117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://www.plcopen.org/xml/tc6_0200">
+  <fileHeader companyName="" productName="CODESYS" productVersion="CODESYS V3.5 SP21 Patch 3" creationDateTime="2026-03-27T12:02:48.1085164" />
+  <contentHeader name="SortingItemsByColour.project" modificationDateTime="2026-03-27T12:01:55.6569734">
+    <coordinateInfo>
+      <fbd>
+        <scaling x="1" y="1" />
+      </fbd>
+      <ld>
+        <scaling x="1" y="1" />
+      </ld>
+      <sfc>
+        <scaling x="1" y="1" />
+      </sfc>
+    </coordinateInfo>
+    <addData>
+      <data name="http://www.3s-software.com/plcopenxml/projectinformation" handleUnknown="implementation">
+        <ProjectInformation />
+      </data>
+    </addData>
+  </contentHeader>
+  <types>
+    <dataTypes />
+    <pous />
+  </types>
+  <instances>
+    <configurations>
+      <configuration name="Device">
+        <resource name="Application">
+          <task name="MainTask" interval="PT0.02S" priority="1">
+            <pouInstance name="PLC_PRG" typeName="">
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml" />
+              </documentation>
+            </pouInstance>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/tasksettings" handleUnknown="implementation">
+                <TaskSettings KindOfTask="Cyclic" Interval="t#20ms" IntervalUnit="ms" WithinSPSTimeSlicing="true">
+                  <Watchdog Enabled="false" TimeUnit="ms" Sensitivity="1" />
+                </TaskSettings>
+              </data>
+              <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                <ObjectId>9a8dbe83-3048-41c5-bf89-9f3a122593a5</ObjectId>
+              </data>
+            </addData>
+          </task>
+          <globalVars name="FIO">
+            <variable name="iAtExit">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="iAtSensor">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="iVisionSensor">
+              <type>
+                <WORD />
+              </type>
+            </variable>
+            <variable name="iRunning">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="iAtEnd">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="iAutomatic">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="iManual">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="iStart">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="iStop">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="iReset">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="iEmergencyStop">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="oEntryConveyor">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="oExitConveyor">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="oBlueSorterTurn">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="oBlueSorterBelt">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="oGreenSorterTurn">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="oGreenSorterBelt">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="oMetalSorterTurn">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="oMetalSorterBelt">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="oGreen">
+              <type>
+                <WORD />
+              </type>
+            </variable>
+            <variable name="oBlue">
+              <type>
+                <WORD />
+              </type>
+            </variable>
+            <variable name="oMetal">
+              <type>
+                <WORD />
+              </type>
+            </variable>
+            <variable name="oStartLight">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="oStopLight">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="oResetLight">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="oStackRed">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="oStackYellow">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="oStackGreen">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                <Attributes>
+                  <Attribute Name="qualified_only" Value="" />
+                </Attributes>
+              </data>
+              <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                <ObjectId>160da4f9-c7a4-4e54-89ea-4ed883fd7658</ObjectId>
+              </data>
+            </addData>
+          </globalVars>
+          <addData>
+            <data name="http://www.3s-software.com/plcopenxml/pou" handleUnknown="implementation">
+              <pou name="PLC_PRG" pouType="program">
+                <interface>
+                  <localVars>
+                    <variable name="ItemLeftExitConveyor">
+                      <type>
+                        <derived name="R_TRIG" />
+                      </type>
+                    </variable>
+                    <variable name="ItemEnteringExitConveyor">
+                      <type>
+                        <derived name="R_TRIG" />
+                      </type>
+                    </variable>
+                    <variable name="ItemLeftEntryConveyor">
+                      <type>
+                        <derived name="F_TRIG" />
+                      </type>
+                    </variable>
+                    <variable name="ExitConveyorStopped">
+                      <type>
+                        <derived name="F_TRIG" />
+                      </type>
+                    </variable>
+                    <variable name="SceneStarted">
+                      <type>
+                        <derived name="R_TRIG" />
+                      </type>
+                    </variable>
+                    <variable name="SwitchedToAutomatic">
+                      <type>
+                        <derived name="R_TRIG" />
+                      </type>
+                    </variable>
+                    <variable name="GreenCount">
+                      <type>
+                        <WORD />
+                      </type>
+                    </variable>
+                    <variable name="BlueCount">
+                      <type>
+                        <WORD />
+                      </type>
+                    </variable>
+                    <variable name="MetalCount">
+                      <type>
+                        <WORD />
+                      </type>
+                    </variable>
+                    <variable name="ItemDetected">
+                      <type>
+                        <derived name="R_TRIG" />
+                      </type>
+                    </variable>
+                    <variable name="ItemAtSensor">
+                      <type>
+                        <BOOL />
+                      </type>
+                    </variable>
+                    <variable name="StartPressed">
+                      <type>
+                        <derived name="R_TRIG" />
+                      </type>
+                    </variable>
+                    <variable name="StopPressed">
+                      <type>
+                        <derived name="R_TRIG" />
+                      </type>
+                    </variable>
+                    <variable name="ResetPressed">
+                      <type>
+                        <derived name="R_TRIG" />
+                      </type>
+                    </variable>
+                  </localVars>
+                </interface>
+                <body>
+                  <ST>
+                    <xhtml xmlns="http://www.w3.org/1999/xhtml">ItemLeftExitConveyor(CLK:=FIO.iAtExit);
+ItemEnteringExitConveyor(CLK:=FIO.iAtSensor);
+ItemLeftEntryConveyor(CLK:=FIO.iAtSensor);
+SceneStarted(CLK:= FIO.iRunning);
+ItemAtSensor := FIO.iVisionSensor&gt;0;
+ItemDetected(CLK:=ItemAtSensor);
+FIO.oGreen := GreenCount;
+FIO.oBlue := BlueCount;
+FIO.oMetal := MetalCount;
+StartPressed(CLK:=FIO.iStart);
+StopPressed(CLK:=FIO.iStop);
+ResetPressed(CLK:=FIO.iReset);
+FIO.oStartLight := FALSE;
+FIO.oStopLight := FALSE;
+FIO.oResetLight := FALSE;
+ExitConveyorStopped(CLK:=FIO.oExitConveyor);
+SwitchedToAutomatic(CLk:=FIO.iAutomatic);
+
+IF SceneStarted.Q THEN
+	FIO.oStackYellow := TRUE;
+END_IF
+
+IF SwitchedToAutomatic.Q THEN
+	FIO.oEntryConveyor := TRUE;
+	FIO.oStackGreen := TRUE;
+END_IF
+
+IF FIO.iManual THEN
+	IF StartPressed.Q THEN
+		FIO.oStartLight := TRUE;
+		FIO.oEntryConveyor := TRUE;
+		FIO.oStackGreen := TRUE;
+	END_IF
+END_IF
+
+IF ItemEnteringExitConveyor.Q THEN
+	FIO.oExitConveyor := TRUE;
+END_IF
+
+IF ItemLeftEntryConveyor.Q THEN
+	FIO.oEntryConveyor := FALSE;
+END_IF
+
+IF ItemDetected.Q THEN
+IF FIO.iVisionSensor &gt;=1 AND FIO.iVisionSensor &lt;=3 THEN
+	FIO.oBlueSorterTurn := TRUE;
+	FIO.oBlueSorterBelt := TRUE;
+	FIO.oGreenSorterTurn := FALSE;
+	FIO.oGreenSorterBelt := FALSE;
+	FIO.oMetalSorterTurn := FALSE;
+	FIO.oMetalSorterBelt := FALSE;
+	BlueCount := BlueCount+1;
+
+ELSIF FIO.iVisionSensor &gt;=4 AND FIO.iVisionSensor &lt;=6 THEN
+	FIO.oGreenSorterTurn := TRUE;
+	FIO.oGreenSorterBelt := TRUE;
+	FIO.oBlueSorterTurn := FALSE;
+	FIO.oBlueSorterBelt := FALSE;
+	FIO.oMetalSorterTurn := FALSE;
+	FIO.oMetalSorterBelt := FALSE;
+	GreenCount := GreenCount+1;
+	
+ELSIF FIO.iVisionSensor &gt;=7 AND FIO.iVisionSensor &lt;=9 THEN
+	FIO.oMetalSorterTurn := TRUE;
+	FIO.oMetalSorterBelt := TRUE;
+	FIO.oBlueSorterTurn := FALSE;
+	FIO.oBlueSorterBelt := FALSE;
+	FIO.oGreenSorterTurn := FALSE;
+	FIO.oGreenSorterBelt := FALSE;
+	MetalCount := MetalCount+1;
+END_IF
+END_IF
+
+IF ItemLeftExitConveyor.Q THEN
+	FIO.oExitConveyor := FALSE;
+END_IF
+
+IF ExitConveyorStopped.Q THEN
+	FIO.oEntryConveyor := TRUE;
+END_IF
+
+IF FIO.iAtEnd THEN
+	FIO.oBlueSorterTurn := FALSE;
+	FIO.oBlueSorterBelt := FALSE;
+	FIO.oGreenSorterTurn := FALSE;
+	FIO.oGreenSorterBelt := FALSE;
+	FIO.oMetalSorterTurn := FALSE;
+	FIO.oMetalSorterBelt := FALSE;
+	FIO.oEntryConveyor := FALSE;
+	FIO.oExitConveyor := FALSE;
+	FIO.oStackGreen := FALSE;
+	FIO.oStackRed := TRUE;
+END_IF
+
+IF FIO.iManual THEN
+IF StopPressed.Q THEN
+	FIO.oBlueSorterBelt := FALSE;
+	FIO.oGreenSorterBelt := FALSE;
+	FIO.oMetalSorterBelt := FALSE;
+	FIO.oEntryConveyor := FALSE;
+	FIO.oExitConveyor := FALSE;
+	FIO.oStackGreen := FALSE;
+	FIO.oStackRed := FALSE;
+	FIO.oStopLight := TRUE;
+END_IF
+END_IF
+
+IF FIO.iManual THEN
+IF ResetPressed.Q THEN
+	FIO.oBlueSorterTurn := FALSE;
+	FIO.oBlueSorterBelt := FALSE;
+	FIO.oGreenSorterTurn := FALSE;
+	FIO.oGreenSorterBelt := FALSE;
+	FIO.oMetalSorterTurn := FALSE;
+	FIO.oMetalSorterBelt := FALSE;
+	FIO.oEntryConveyor := FALSE;
+	FIO.oExitConveyor := FALSE;
+	FIO.oStackGreen := FALSE;
+	FIO.oStackRed := FALSE;
+	FIO.oResetLight := TRUE;
+END_IF
+END_IF</xhtml>
+                  </ST>
+                </body>
+                <addData>
+                  <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                    <ObjectId>bf44b6c6-897e-436a-af76-052732d3ed96</ObjectId>
+                  </data>
+                </addData>
+              </pou>
+            </data>
+            <data name="http://www.3s-software.com/plcopenxml/libraries" handleUnknown="implementation">
+              <Libraries>
+                <Library Name="#IoStandard" Namespace="IoStandard" HideWhenReferencedAsDependency="false" PublishSymbolsInContainer="false" SystemLibrary="true" LinkAllContent="true" DefaultResolution="IoStandard, 3.5.17.0 (System)" />
+                <Library Name="#3SLicense" Namespace="_3S_LICENSE" HideWhenReferencedAsDependency="false" PublishSymbolsInContainer="false" SystemLibrary="true" LinkAllContent="false" DefaultResolution="3SLicense, 0.0.0.0 (CODESYS)" ResolverGuid="97c3b452-d9fa-4ac2-9d0c-3d420aa6d95b" />
+                <Library Name="#CAA Device Diagnosis" Namespace="DED" HideWhenReferencedAsDependency="false" PublishSymbolsInContainer="false" SystemLibrary="true" LinkAllContent="false" DefaultResolution="CAA Device Diagnosis, 3.5.21.0 (CAA Technical Workgroup)" />
+                <Library Name="#Standard" Namespace="Standard" HideWhenReferencedAsDependency="false" PublishSymbolsInContainer="false" SystemLibrary="false" LinkAllContent="false" DefaultResolution="Standard, * (System)" />
+                <Library Name="#BreakpointLogging" Namespace="BPLog" HideWhenReferencedAsDependency="false" PublishSymbolsInContainer="false" SystemLibrary="true" LinkAllContent="false" DefaultResolution="Breakpoint Logging Functions, * (3S - Smart Software Solutions GmbH)" />
+                <Library Name="#IoDrvEthernet" Namespace="IoDrvEthernet" HideWhenReferencedAsDependency="false" PublishSymbolsInContainer="false" SystemLibrary="true" LinkAllContent="false" DefaultResolution="IoDrvEthernet, 4.2.0.0 (3S - Smart Software Solutions GmbH)" />
+                <Library Name="#IoDrvModbusTCPServer" Namespace="IoDrvModbusTCPSlaveLibrary" HideWhenReferencedAsDependency="false" PublishSymbolsInContainer="false" SystemLibrary="true" LinkAllContent="false" DefaultResolution="IoDrvModbusTCPServer, 4.5.0.0 (CODESYS)" />
+                <PlaceholderRedirections>
+                  <PlaceholderRedirection Placeholder="Standard" Redirection="Standard, 3.5.18.0 (System)" />
+                  <PlaceholderRedirection Placeholder="StringUtils" Redirection="StringUtils, 3.5.20.0 (System)" />
+                </PlaceholderRedirections>
+                <addData>
+                  <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                    <ObjectId>51fa8caa-9ca2-429a-8715-3100934cd6f1</ObjectId>
+                  </data>
+                </addData>
+              </Libraries>
+            </data>
+            <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+              <ObjectId>6dbc1a7e-b7dc-4741-960a-0b50516a51a0</ObjectId>
+            </data>
+          </addData>
+        </resource>
+        <addData>
+          <data name="Device" handleUnknown="discard">
+            <Device xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="">
+              <DeviceType>
+                <DeviceIdentification>
+                  <Type>4096</Type>
+                  <Id>0000 0004</Id>
+                  <Version>3.5.21.30</Version>
+                </DeviceIdentification>
+                <Connector moduleType="256" interface="Common.PCI" connectorId="0">
+                  <HostParameterSet />
+                </Connector>
+                <Connector moduleType="769" interface="SafetyInterface" connectorId="1">
+                  <HostParameterSet />
+                </Connector>
+                <DeviceParameterSet />
+              </DeviceType>
+            </Device>
+          </data>
+          <data name="configurations" handleUnknown="discard">
+            <configurations>
+              <configuration name="Ethernet">
+                <addData>
+                  <data name="Device" handleUnknown="discard">
+                    <Device xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="">
+                      <DeviceType>
+                        <DeviceIdentification>
+                          <Type>110</Type>
+                          <Id>0000 0002</Id>
+                          <Version>4.2.0.0</Version>
+                        </DeviceIdentification>
+                        <Connector moduleType="110" role="child" interface="Common.PCI" connectorId="1">
+                          <HostParameterSet />
+                        </Connector>
+                        <Connector moduleType="111" interface="Common.Ethernet" connectorId="2" hostpath="1">
+                          <HostParameterSet>
+                            <ParameterSection>
+                              <Name>IP-Settings PLC 2</Name>
+                              <Description />
+                              <Parameter ParameterId="200" type="std:WSTRING" IndexInDevDesc="24">
+                                <Attributes />
+                                <Value name="_x0032_00" visiblename="NetworkInterfaceName" desc="Configured Name of Ethernet Interface (PLC 2).">""</Value>
+                                <Name>NetworkInterfaceName</Name>
+                                <Description>Configured Name of Ethernet Interface (PLC 2).</Description>
+                              </Parameter>
+                              <Parameter ParameterId="201" type="std:ARRAY[0..3] OF BYTE" IndexInDevDesc="25">
+                                <Attributes />
+                                <Value name="_x0032_01" visiblename="IPAddress" desc="Configured IP Address of the Ethernet Interface (PLC 2).">[192, 168, 0, 2]</Value>
+                                <Name>IPAddress</Name>
+                                <Description>Configured IP Address of the Ethernet Interface (PLC 2).</Description>
+                              </Parameter>
+                              <Parameter ParameterId="202" type="std:ARRAY[0..3] OF BYTE" IndexInDevDesc="26">
+                                <Attributes />
+                                <Value name="_x0032_02" visiblename="SubnetMask" desc="Configured Subnet Mask of the Ethernet Interface (PLC 2).">[255, 255, 255, 0]</Value>
+                                <Name>SubnetMask</Name>
+                                <Description>Configured Subnet Mask of the Ethernet Interface (PLC 2).</Description>
+                              </Parameter>
+                              <Parameter ParameterId="203" type="std:ARRAY[0..3] OF BYTE" IndexInDevDesc="27">
+                                <Attributes />
+                                <Value name="_x0032_03" visiblename="GatewayAddress" desc="Configured Default Gateway of the Ethernet Interface (PLC 2).">[0, 0, 0, 0]</Value>
+                                <Name>GatewayAddress</Name>
+                                <Description>Configured Default Gateway of the Ethernet Interface (PLC 2).</Description>
+                              </Parameter>
+                            </ParameterSection>
+                            <Parameter ParameterId="0" type="std:ARRAY[0..3] OF BYTE" IndexInDevDesc="0">
+                              <Attributes />
+                              <Value name="_x0030_" visiblename="IPAddress" desc="Configure IP Address of the Controller on the EtherNet bus (IP).">[192, 168, 0, 1]</Value>
+                              <Name>IPAddress</Name>
+                              <Description>Configure IP Address of the Controller on the EtherNet bus (IP).</Description>
+                            </Parameter>
+                            <Parameter ParameterId="1" type="std:ARRAY[0..3] OF BYTE" IndexInDevDesc="1">
+                              <Attributes />
+                              <Value name="_x0031_" visiblename="SubnetMask" desc="Configure IP Address of the Controller on the EtherNet bus (Mask).">[255, 255, 255, 0]</Value>
+                              <Name>SubnetMask</Name>
+                              <Description>Configure IP Address of the Controller on the EtherNet bus (Mask).</Description>
+                            </Parameter>
+                            <Parameter ParameterId="2" type="std:ARRAY[0..3] OF BYTE" IndexInDevDesc="2">
+                              <Attributes />
+                              <Value name="_x0032_" visiblename="GatewayAddress" desc="Configure IP Address of the Controller on the EtherNet bus (Gateway).">[0, 0, 0, 0]</Value>
+                              <Name>GatewayAddress</Name>
+                              <Description>Configure IP Address of the Controller on the EtherNet bus (Gateway).</Description>
+                            </Parameter>
+                            <Parameter ParameterId="3" type="localTypes:TransferRateType" IndexInDevDesc="3">
+                              <Attributes />
+                              <Value name="_x0033_" visiblename="TransferRate" desc="Configure Bus speed of the EtherNet.">0</Value>
+                              <Name>TransferRate</Name>
+                              <Description>Configure Bus speed of the EtherNet.</Description>
+                            </Parameter>
+                            <Parameter ParameterId="4" type="localTypes:IPConfigModeType" IndexInDevDesc="4">
+                              <Attributes />
+                              <Value name="_x0034_" visiblename="IPConfigMode" desc="Configure the method this device uses for obtaining an IP address.">1</Value>
+                              <Name>IPConfigMode</Name>
+                              <Description>Configure the method this device uses for obtaining an IP address.</Description>
+                            </Parameter>
+                            <Parameter ParameterId="5" type="std:STRING" IndexInDevDesc="5">
+                              <Attributes />
+                              <Value name="_x0035_" visiblename="DeviceName" desc="Configure the Network-/Device- Name, e.g. for DHCP addressing Use case.">'myDevice'</Value>
+                              <Name>DeviceName</Name>
+                              <Description>Configure the Network-/Device- Name, e.g. for DHCP addressing Use case.</Description>
+                            </Parameter>
+                            <Parameter ParameterId="6" type="std:BOOL" IndexInDevDesc="6">
+                              <Attributes />
+                              <Value name="_x0036_" visiblename="WebServer" desc="Configure activation of WEB server">true</Value>
+                              <Name>WebServer</Name>
+                              <Description>Configure activation of WEB server</Description>
+                            </Parameter>
+                            <Parameter ParameterId="9" type="std:ARRAY[0..5] OF BYTE" IndexInDevDesc="7">
+                              <Attributes offlineaccess="read" />
+                              <Value name="_x0039_" visiblename="MACAddress" offlineaccess="read" desc="MAC Address">[16#0, 16#0, 16#0, 16#0, 16#0, 16#0]</Value>
+                              <Name>MACAddress</Name>
+                              <Description>MAC Address</Description>
+                            </Parameter>
+                            <Parameter ParameterId="10" type="std:STRING" IndexInDevDesc="8">
+                              <Attributes />
+                              <Value name="_x0031_0" visiblename="NetworkInterfaceName" desc="Configure Name of Network Interface">''</Value>
+                              <Name>NetworkInterfaceName</Name>
+                              <Description>Configure Name of Network Interface</Description>
+                            </Parameter>
+                            <Parameter ParameterId="11" type="localTypes:ProtocolEnumType" IndexInDevDesc="9">
+                              <Attributes />
+                              <Value name="_x0031_1" visiblename="EtherNetProtocol" desc="Configure EtherNet Protocol (Ethernet2 or 802.3 frames)">0</Value>
+                              <Name>EtherNetProtocol</Name>
+                              <Description>Configure EtherNet Protocol (Ethernet2 or 802.3 frames)</Description>
+                            </Parameter>
+                            <Parameter ParameterId="12" type="std:WSTRING" IndexInDevDesc="10">
+                              <Attributes />
+                              <Value name="_x0031_2" visiblename="NetworkInterfaceName" desc="Configure Name of Network Interface - Unicode">""</Value>
+                              <Name>NetworkInterfaceName</Name>
+                              <Description>Configure Name of Network Interface - Unicode</Description>
+                            </Parameter>
+                            <Parameter ParameterId="13" type="std:BOOL" IndexInDevDesc="11">
+                              <Attributes />
+                              <Value name="_x0031_3" visiblename="SaveCommunicationSettings" desc="TRUE: IP, SubnetMask and GatewayAddress will be set to the configured values at the PLC's OS!">false</Value>
+                              <Name>SaveCommunicationSettings</Name>
+                              <Description>TRUE: IP, SubnetMask and GatewayAddress will be set to the configured values at the PLC's OS!</Description>
+                            </Parameter>
+                            <Parameter ParameterId="100" type="std:ARRAY[0..3] OF BYTE" IndexInDevDesc="12">
+                              <Attributes offlineaccess="read" />
+                              <Value name="_x0031_00" visiblename="IPAddress" offlineaccess="read" desc="Actual IP Address of the Controller on the EtherNet bus (IP).">[192, 168, 0, 1]</Value>
+                              <Name>IPAddress</Name>
+                              <Description>Actual IP Address of the Controller on the EtherNet bus (IP).</Description>
+                            </Parameter>
+                            <Parameter ParameterId="101" type="std:ARRAY[0..3] OF BYTE" IndexInDevDesc="13">
+                              <Attributes offlineaccess="read" />
+                              <Value name="_x0031_01" visiblename="SubnetMask" offlineaccess="read" desc="Actual IP Address of the Controller on the EtherNet bus (Mask).">[255, 255, 255, 0]</Value>
+                              <Name>SubnetMask</Name>
+                              <Description>Actual IP Address of the Controller on the EtherNet bus (Mask).</Description>
+                            </Parameter>
+                            <Parameter ParameterId="102" type="std:ARRAY[0..3] OF BYTE" IndexInDevDesc="14">
+                              <Attributes offlineaccess="read" />
+                              <Value name="_x0031_02" visiblename="GatewayAddress" offlineaccess="read" desc="Actual IP Address of the Controller on the EtherNet bus (Gateway).">[0, 0, 0, 0]</Value>
+                              <Name>GatewayAddress</Name>
+                              <Description>Actual IP Address of the Controller on the EtherNet bus (Gateway).</Description>
+                            </Parameter>
+                            <Parameter ParameterId="103" type="localTypes:TransferRateType" IndexInDevDesc="15">
+                              <Attributes offlineaccess="read" />
+                              <Value name="_x0031_03" visiblename="TransferRate" offlineaccess="read" desc="Actual Bus speed of the EtherNet.">0</Value>
+                              <Name>TransferRate</Name>
+                              <Description>Actual Bus speed of the EtherNet.</Description>
+                            </Parameter>
+                            <Parameter ParameterId="104" type="localTypes:IPConfigModeType" IndexInDevDesc="16">
+                              <Attributes offlineaccess="read" />
+                              <Value name="_x0031_04" visiblename="IPConfigMode" offlineaccess="read" desc="Actual method this device uses for obtaining an IP address.">1</Value>
+                              <Name>IPConfigMode</Name>
+                              <Description>Actual method this device uses for obtaining an IP address.</Description>
+                            </Parameter>
+                            <Parameter ParameterId="105" type="std:STRING" IndexInDevDesc="17">
+                              <Attributes offlineaccess="read" />
+                              <Value name="_x0031_05" visiblename="DeviceName" offlineaccess="read" desc="Actual Network-/Device- Name, e.g. for DHCP addressing Use case.">'my Device'</Value>
+                              <Name>DeviceName</Name>
+                              <Description>Actual Network-/Device- Name, e.g. for DHCP addressing Use case.</Description>
+                            </Parameter>
+                            <Parameter ParameterId="106" type="std:BOOL" IndexInDevDesc="18">
+                              <Attributes offlineaccess="read" />
+                              <Value name="_x0031_06" visiblename="WebServer" offlineaccess="read" desc="Actual activation state of WEB server">true</Value>
+                              <Name>WebServer</Name>
+                              <Description>Actual activation state of WEB server</Description>
+                            </Parameter>
+                            <Parameter ParameterId="107" type="localTypes:NetworkStatusType" IndexInDevDesc="19">
+                              <Attributes offlineaccess="read" />
+                              <Value name="_x0031_07" visiblename="NetworkStatus" offlineaccess="read" desc="Actual network status.">1</Value>
+                              <Name>NetworkStatus</Name>
+                              <Description>Actual network status.</Description>
+                            </Parameter>
+                            <Parameter ParameterId="108" type="localTypes:ModuleStatusType" IndexInDevDesc="20">
+                              <Attributes offlineaccess="read" />
+                              <Value name="_x0031_08" visiblename="ModuleStatus" offlineaccess="read" desc="Actual module status.">1</Value>
+                              <Name>ModuleStatus</Name>
+                              <Description>Actual module status.</Description>
+                            </Parameter>
+                            <Parameter ParameterId="109" type="std:ARRAY[0..5] OF BYTE" IndexInDevDesc="21">
+                              <Attributes offlineaccess="read" />
+                              <Value name="_x0031_09" visiblename="MACAddress" offlineaccess="read" desc="Actual MAC Address.">[16#0, 16#0, 16#0, 16#0, 16#0, 16#0]</Value>
+                              <Name>MACAddress</Name>
+                              <Description>Actual MAC Address.</Description>
+                            </Parameter>
+                            <Parameter ParameterId="110" type="std:STRING" IndexInDevDesc="22">
+                              <Attributes offlineaccess="read" />
+                              <Value name="_x0031_10" visiblename="NetworkInterfaceName" offlineaccess="read" desc="Actual Name of Network Interface">'ether 0'</Value>
+                              <Name>NetworkInterfaceName</Name>
+                              <Description>Actual Name of Network Interface</Description>
+                            </Parameter>
+                            <Parameter ParameterId="111" type="localTypes:ProtocolEnumType" IndexInDevDesc="23">
+                              <Attributes offlineaccess="read" />
+                              <Value name="_x0031_11" visiblename="EtherNetProtocol" offlineaccess="read" desc="Actual configured EtherNet Protocol">0</Value>
+                              <Name>EtherNetProtocol</Name>
+                              <Description>Actual configured EtherNet Protocol</Description>
+                            </Parameter>
+                            <Parameter ParameterId="2006" type="localTypes:EthDiag" IndexInDevDesc="28">
+                              <Attributes channel="diag" offlineaccess="read" onlineaccess="read" />
+                              <Value name="_x0032_006" visiblename="EthDiag" offlineaccess="read" onlineaccess="read" desc="Ethernet diagnostic information">
+                                <Element name="CurrentIP" visiblename="Current IP" />
+                                <Element name="CurrentSubnet" visiblename="Current subnet mask" />
+                                <Element name="CurrentGateway" visiblename="Current gateway address" />
+                                <Element name="IPChanges" visiblename="IP changes" desc="Amount of IP configuration changes since startup (IP or gateway address or subnet mask)" />
+                              </Value>
+                              <Name>EthDiag</Name>
+                              <Description>Ethernet diagnostic information</Description>
+                            </Parameter>
+                            <Parameter ParameterId="2007" type="std:BOOL" IndexInDevDesc="29">
+                              <Attributes channel="diagAck" offlineaccess="none" onlineaccess="none" />
+                              <Value name="_x0032_007" visiblename="Diag Acknowledge" offlineaccess="none" onlineaccess="none" desc="Diag Acknowledge">FALSE</Value>
+                              <Name>Diag Acknowledge</Name>
+                              <Description>Diag Acknowledge</Description>
+                            </Parameter>
+                            <Parameter ParameterId="10000000" type="std:BOOL" IndexInDevDesc="30">
+                              <Attributes offlineaccess="none" />
+                              <Value name="_x0031_0000000" visiblename="WebserverVisible" offlineaccess="none" desc="enable/disable configuration of parameter WebServer">false</Value>
+                              <Name>WebserverVisible</Name>
+                              <Description>enable/disable configuration of parameter WebServer</Description>
+                            </Parameter>
+                            <Parameter ParameterId="10000001" type="std:BOOL" IndexInDevDesc="31">
+                              <Attributes offlineaccess="none" />
+                              <Value name="_x0031_0000001" visiblename="NetworkInterfaceVisible" offlineaccess="none" desc="enable/disable configuration of parameter NetworkInterfaceName">true</Value>
+                              <Name>NetworkInterfaceVisible</Name>
+                              <Description>enable/disable configuration of parameter NetworkInterfaceName</Description>
+                            </Parameter>
+                            <Parameter ParameterId="10000002" type="std:BOOL" IndexInDevDesc="32">
+                              <Attributes download="false" offlineaccess="none" />
+                              <Value name="_x0031_0000002" visiblename="OnlineStatusScreenEnabled" offlineaccess="none" desc="enable/disable Online-Status Screen">false</Value>
+                              <Name>OnlineStatusScreenEnabled</Name>
+                              <Description>enable/disable Online-Status Screen</Description>
+                            </Parameter>
+                            <Parameter ParameterId="10000003" type="std:WSTRING" IndexInDevDesc="33">
+                              <Attributes download="false" offlineaccess="read" />
+                              <Value name="_x0031_0000003" visiblename="ReadOnlyNIC" offlineaccess="read" desc="NIC whose communication settings shall not be changed.">""</Value>
+                              <Name>ReadOnlyNIC</Name>
+                              <Description>NIC whose communication settings shall not be changed.</Description>
+                            </Parameter>
+                            <Parameter ParameterId="10000004" type="std:BOOL" IndexInDevDesc="34">
+                              <Attributes offlineaccess="none" />
+                              <Value name="_x0031_0000004" visiblename="UseAsyncTask" offlineaccess="none" desc="Use async task to check the network connectivity. This relieves the bus cycle task.">true</Value>
+                              <Name>UseAsyncTask</Name>
+                              <Description>Use async task to check the network connectivity. This relieves the bus cycle task.</Description>
+                            </Parameter>
+                            <Parameter ParameterId="20000000" type="std:__XWORD" IndexInDevDesc="35">
+                              <Attributes offlineaccess="none" />
+                              <Value name="_x0032_0000000" visiblename="Dummy Parameter" offlineaccess="none" desc="Dummy Parameter">0</Value>
+                              <Name>Dummy Parameter</Name>
+                              <Description>Dummy Parameter</Description>
+                            </Parameter>
+                            <Parameter ParameterId="805306369" type="std:BOOL" IndexInDevDesc="36">
+                              <Attributes download="false" offlineaccess="none" />
+                              <Value name="_x0038_05306369" visiblename="ShowLoggerPage" offlineaccess="none" desc="Show the logger page for the scanner">true</Value>
+                              <Name>ShowLoggerPage</Name>
+                              <Description>Show the logger page for the scanner</Description>
+                            </Parameter>
+                          </HostParameterSet>
+                        </Connector>
+                        <DeviceParameterSet />
+                      </DeviceType>
+                    </Device>
+                  </data>
+                  <data name="configurations" handleUnknown="discard">
+                    <configurations>
+                      <configuration name="ModbusTCP_Server_Device">
+                        <addData>
+                          <data name="Device" handleUnknown="discard">
+                            <Device xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="">
+                              <DeviceType>
+                                <DeviceIdentification>
+                                  <Type>115</Type>
+                                  <Id>0000 0002</Id>
+                                  <Version>4.5.0.0</Version>
+                                </DeviceIdentification>
+                                <Connector moduleType="115" role="child" interface="Common.Ethernet" connectorId="1">
+                                  <HostParameterSet>
+                                    <Parameter ParameterId="0" type="localTypes:TimeOutRangeType" IndexInDevDesc="0">
+                                      <Attributes />
+                                      <Value name="_x0030_" visiblename="Timeout" desc="Configuration of the TimeOut">0</Value>
+                                      <Name>Timeout</Name>
+                                      <Description>Configuration of the TimeOut</Description>
+                                    </Parameter>
+                                    <Parameter ParameterId="3" type="localTypes:AssemblySizeRangeType" IndexInDevDesc="1">
+                                      <Attributes />
+                                      <Value name="_x0033_" visiblename="InputAssemblySize" desc="Configure the size of the Ioscanner register">2</Value>
+                                      <Name>InputAssemblySize</Name>
+                                      <Description>Configure the size of the Ioscanner register</Description>
+                                    </Parameter>
+                                    <Parameter ParameterId="4" type="localTypes:AssemblySizeRangeType" IndexInDevDesc="2">
+                                      <Attributes />
+                                      <Value name="_x0034_" visiblename="OutputAssemblySize" desc="Configure the size of the Ioscanner register">3</Value>
+                                      <Name>OutputAssemblySize</Name>
+                                      <Description>Configure the size of the Ioscanner register</Description>
+                                    </Parameter>
+                                    <Parameter ParameterId="6" type="std:UINT" IndexInDevDesc="3">
+                                      <Attributes />
+                                      <Value name="_x0036_" visiblename="Port" desc="Port where the Server is listening for requests">502</Value>
+                                      <Name>Port</Name>
+                                      <Description>Port where the Server is listening for requests</Description>
+                                    </Parameter>
+                                    <Parameter ParameterId="8" type="std:BOOL" IndexInDevDesc="4">
+                                      <Attributes onlineaccess="read" />
+                                      <Value name="_x0038_" visiblename="BindPort" onlineaccess="read" desc="Bind Mdobus port to IP address of specified ethernet adaper">FALSE</Value>
+                                      <Name>BindPort</Name>
+                                      <Description>Bind Mdobus port to IP address of specified ethernet adaper</Description>
+                                    </Parameter>
+                                    <Parameter ParameterId="10" type="std:BOOL" IndexInDevDesc="5">
+                                      <Attributes onlineaccess="read" />
+                                      <Value name="_x0031_0" visiblename="OptimizationOn" onlineaccess="read" desc="the driver optimizes the io update">TRUE</Value>
+                                      <Name>OptimizationOn</Name>
+                                      <Description>the driver optimizes the io update</Description>
+                                    </Parameter>
+                                    <Parameter ParameterId="11" type="std:BOOL" IndexInDevDesc="6">
+                                      <Attributes onlineaccess="read" />
+                                      <Value name="_x0031_1" visiblename="UpdateableHolding" onlineaccess="read" desc="Holding Registers as %Q-data for local update by application">FALSE</Value>
+                                      <Name>UpdateableHolding</Name>
+                                      <Description>Holding Registers as %Q-data for local update by application</Description>
+                                    </Parameter>
+                                    <Parameter ParameterId="12" type="std:BOOL" IndexInDevDesc="7">
+                                      <Attributes onlineaccess="read" />
+                                      <Value name="_x0031_2" visiblename="DistinctBitAreas" onlineaccess="read" desc="Coils and Discrete Inputs data blocks get their own IO-Mapping">TRUE</Value>
+                                      <Name>DistinctBitAreas</Name>
+                                      <Description>Coils and Discrete Inputs data blocks get their own IO-Mapping</Description>
+                                    </Parameter>
+                                    <Parameter ParameterId="13" type="std:UINT" IndexInDevDesc="8">
+                                      <Attributes />
+                                      <Value name="_x0031_3" visiblename="Coils Size" desc="Number of Coils">10</Value>
+                                      <Name>Coils Size</Name>
+                                      <Description>Number of Coils</Description>
+                                    </Parameter>
+                                    <Parameter ParameterId="14" type="std:UINT" IndexInDevDesc="9">
+                                      <Attributes />
+                                      <Value name="_x0031_4" visiblename="Discrete Inputs Size" desc="Number of Discrete Inputs">14</Value>
+                                      <Name>Discrete Inputs Size</Name>
+                                      <Description>Number of Discrete Inputs</Description>
+                                    </Parameter>
+                                    <Parameter ParameterId="20" type="localTypes:StartAddresses" IndexInDevDesc="10">
+                                      <Attributes onlineaccess="read" />
+                                      <Value name="_x0032_0" visiblename="StartAdresses" onlineaccess="read" desc="Start Addresses of Modbus Data Areas">
+                                        <Element name="Coils" visiblename="Coils">0</Element>
+                                        <Element name="DiscreteInputs" visiblename="DiscreteInputs">0</Element>
+                                        <Element name="HoldingRegister" visiblename="HoldingRegister">0</Element>
+                                        <Element name="InputRegister" visiblename="InputRegister">0</Element>
+                                      </Value>
+                                      <Name>StartAdresses</Name>
+                                      <Description>Start Addresses of Modbus Data Areas</Description>
+                                    </Parameter>
+                                    <Parameter ParameterId="21" type="std:UDINT" IndexInDevDesc="11">
+                                      <Attributes onlineaccess="read" />
+                                      <Value name="_x0032_1" visiblename="Data Model Options" onlineaccess="read" desc="0 = default, 1 = Holding- and Input-Register Data Areas overlay">0</Value>
+                                      <Name>Data Model Options</Name>
+                                      <Description>0 = default, 1 = Holding- and Input-Register Data Areas overlay</Description>
+                                    </Parameter>
+                                    <Parameter ParameterId="22" type="std:BOOL" IndexInDevDesc="12">
+                                      <Attributes onlineaccess="read" />
+                                      <Value name="_x0032_2" visiblename="CloseTCPsocketAtTimeout" onlineaccess="read" desc="Close TCP-socket at timeout">TRUE</Value>
+                                      <Name>CloseTCPsocketAtTimeout</Name>
+                                      <Description>Close TCP-socket at timeout</Description>
+                                    </Parameter>
+                                    <Parameter ParameterId="30" type="std:BOOL" IndexInDevDesc="13">
+                                      <Attributes onlineaccess="read" />
+                                      <Value name="_x0033_0" visiblename="SerialGatewayEnabled" onlineaccess="read">FALSE</Value>
+                                      <Name>SerialGatewayEnabled</Name>
+                                    </Parameter>
+                                    <Parameter ParameterId="31" type="std:USINT" IndexInDevDesc="14">
+                                      <Attributes />
+                                      <Value name="_x0033_1" visiblename="ComPort" desc="COM port number to use for the serial communication">1</Value>
+                                      <Name>ComPort</Name>
+                                      <Description>COM port number to use for the serial communication</Description>
+                                    </Parameter>
+                                    <Parameter ParameterId="32" type="localTypes:BAUDRATE" IndexInDevDesc="15">
+                                      <Attributes />
+                                      <Value name="_x0033_2" visiblename="Baudrate" desc="Baudrate of the serial port.">9600</Value>
+                                      <Name>Baudrate</Name>
+                                      <Description>Baudrate of the serial port.</Description>
+                                    </Parameter>
+                                    <Parameter ParameterId="40" type="localTypes:DeviceStatusT" IndexInDevDesc="16">
+                                      <Attributes channel="diag" offlineaccess="read" onlineaccess="read" />
+                                      <Value name="_x0034_0" visiblename="Status" offlineaccess="read" onlineaccess="read" desc="Device's status information">
+                                        <Element name="StructVersion" visiblename="Version" offlineaccess="none">1</Element>
+                                        <Element name="Connections" visiblename="Connections" desc="Number of active TCP-Client Connections" />
+                                        <Element name="TCP_Port_Status" visiblename="TCP-Port Status" desc="Current State of TCP Port" />
+                                        <Element name="RequestCounter" visiblename="Request Counter" desc="Total number of incomming client requests" />
+                                        <Element name="ExceptionCounter" visiblename="Modbus Exception Counter" desc="Number of Request that have been rejected with Exception Code" />
+                                        <Element name="SerialGateway" visiblename="Serial Gateway">
+                                          <Element name="Active" visiblename="Active" desc="TCP/Serial gateway function is enabled" />
+                                          <Element name="align1" visiblename="align" offlineaccess="none" />
+                                          <Element name="align2" visiblename="align" offlineaccess="none" />
+                                          <Element name="align3" visiblename="align" offlineaccess="none" />
+                                          <Element name="COM_Port_Status" visiblename="COM-Port Status" desc="Current State of COM-Port" />
+                                          <Element name="RequestCounter" visiblename="Request Counter" desc="Number of forwarded requests" />
+                                          <Element name="ErrorCounter" visiblename="Error Counter" desc="Number of failed forwarded requests" />
+                                        </Element>
+                                      </Value>
+                                      <Name>Status</Name>
+                                      <Description>Device's status information</Description>
+                                    </Parameter>
+                                    <Parameter ParameterId="100" type="localTypes:TimeOutRangeType" IndexInDevDesc="17">
+                                      <Attributes offlineaccess="read" />
+                                      <Value name="_x0031_00" visiblename="Timeout" offlineaccess="read" desc="Actual value of the TimeOut configured">2000</Value>
+                                      <Name>Timeout</Name>
+                                      <Description>Actual value of the TimeOut configured</Description>
+                                    </Parameter>
+                                    <Parameter ParameterId="103" type="localTypes:AssemblySizeRangeType" IndexInDevDesc="18">
+                                      <Attributes offlineaccess="read" />
+                                      <Value name="_x0031_03" visiblename="InputAssemblySize" offlineaccess="read" desc="Actual value of the size of the assembly">10</Value>
+                                      <Name>InputAssemblySize</Name>
+                                      <Description>Actual value of the size of the assembly</Description>
+                                    </Parameter>
+                                    <Parameter ParameterId="104" type="localTypes:AssemblySizeRangeType" IndexInDevDesc="19">
+                                      <Attributes offlineaccess="read" />
+                                      <Value name="_x0031_04" visiblename="OutputAssemblySize" offlineaccess="read" desc="Actual value of the size of the assembly">10</Value>
+                                      <Name>OutputAssemblySize</Name>
+                                      <Description>Actual value of the size of the assembly</Description>
+                                    </Parameter>
+                                    <Parameter ParameterId="106" type="std:UINT" IndexInDevDesc="20">
+                                      <Attributes offlineaccess="read" />
+                                      <Value name="_x0031_06" visiblename="Port" offlineaccess="read" desc="Current Port where the Server is listening for requests">502</Value>
+                                      <Name>Port</Name>
+                                      <Description>Current Port where the Server is listening for requests</Description>
+                                    </Parameter>
+                                    <Parameter ParameterId="107" type="std:BYTE" IndexInDevDesc="21">
+                                      <Attributes offlineaccess="read" />
+                                      <Value name="_x0031_07" visiblename="Unit-ID" offlineaccess="read" desc="Current Unit-ID of the Server (optional)">0</Value>
+                                      <Name>Unit-ID</Name>
+                                      <Description>Current Unit-ID of the Server (optional)</Description>
+                                    </Parameter>
+                                    <Parameter ParameterId="200" type="std:BOOL" IndexInDevDesc="22">
+                                      <Attributes download="false" offlineaccess="none" />
+                                      <Value name="_x0032_00" visiblename="OnlineStatusScreenEnabled" offlineaccess="none" desc="enable/disable Online-Status Screen">false</Value>
+                                      <Name>OnlineStatusScreenEnabled</Name>
+                                      <Description>enable/disable Online-Status Screen</Description>
+                                    </Parameter>
+                                    <Parameter ParameterId="1000" type="std:ARRAY[0..1] OF WORD">
+                                      <Attributes channel="input" />
+                                      <Value name="_x0031_000_0_0_0" visiblename="Holding Registers[0]">
+                                        <Element name="_x0031_000_0_0_0_0" visiblename="Bit0">FALSE</Element>
+                                        <Element name="_x0031_000_0_0_0_1" visiblename="Bit1">FALSE</Element>
+                                        <Element name="_x0031_000_0_0_0_2" visiblename="Bit2">FALSE</Element>
+                                        <Element name="_x0031_000_0_0_0_3" visiblename="Bit3">FALSE</Element>
+                                        <Element name="_x0031_000_0_0_0_4" visiblename="Bit4">FALSE</Element>
+                                        <Element name="_x0031_000_0_0_0_5" visiblename="Bit5">FALSE</Element>
+                                        <Element name="_x0031_000_0_0_0_6" visiblename="Bit6">FALSE</Element>
+                                        <Element name="_x0031_000_0_0_0_7" visiblename="Bit7">FALSE</Element>
+                                        <Element name="_x0031_000_0_0_0_8" visiblename="Bit8">FALSE</Element>
+                                        <Element name="_x0031_000_0_0_0_9" visiblename="Bit9">FALSE</Element>
+                                        <Element name="_x0031_000_0_0_0_10" visiblename="Bit10">FALSE</Element>
+                                        <Element name="_x0031_000_0_0_0_11" visiblename="Bit11">FALSE</Element>
+                                        <Element name="_x0031_000_0_0_0_12" visiblename="Bit12">FALSE</Element>
+                                        <Element name="_x0031_000_0_0_0_13" visiblename="Bit13">FALSE</Element>
+                                        <Element name="_x0031_000_0_0_0_14" visiblename="Bit14">FALSE</Element>
+                                        <Element name="_x0031_000_0_0_0_15" visiblename="Bit15">FALSE</Element>
+                                      </Value>
+                                      <Value name="_x0031_000_1_0_0" visiblename="Holding Registers[1]">
+                                        <Element name="_x0031_000_1_0_0_0" visiblename="Bit0">FALSE</Element>
+                                        <Element name="_x0031_000_1_0_0_1" visiblename="Bit1">FALSE</Element>
+                                        <Element name="_x0031_000_1_0_0_2" visiblename="Bit2">FALSE</Element>
+                                        <Element name="_x0031_000_1_0_0_3" visiblename="Bit3">FALSE</Element>
+                                        <Element name="_x0031_000_1_0_0_4" visiblename="Bit4">FALSE</Element>
+                                        <Element name="_x0031_000_1_0_0_5" visiblename="Bit5">FALSE</Element>
+                                        <Element name="_x0031_000_1_0_0_6" visiblename="Bit6">FALSE</Element>
+                                        <Element name="_x0031_000_1_0_0_7" visiblename="Bit7">FALSE</Element>
+                                        <Element name="_x0031_000_1_0_0_8" visiblename="Bit8">FALSE</Element>
+                                        <Element name="_x0031_000_1_0_0_9" visiblename="Bit9">FALSE</Element>
+                                        <Element name="_x0031_000_1_0_0_10" visiblename="Bit10">FALSE</Element>
+                                        <Element name="_x0031_000_1_0_0_11" visiblename="Bit11">FALSE</Element>
+                                        <Element name="_x0031_000_1_0_0_12" visiblename="Bit12">FALSE</Element>
+                                        <Element name="_x0031_000_1_0_0_13" visiblename="Bit13">FALSE</Element>
+                                        <Element name="_x0031_000_1_0_0_14" visiblename="Bit14">FALSE</Element>
+                                        <Element name="_x0031_000_1_0_0_15" visiblename="Bit15">FALSE</Element>
+                                      </Value>
+                                      <Name>Holding Registers</Name>
+                                      <Mapping>
+                                        <Element name="_x0031_000_0_0_0">Application.FIO.iVisionSensor</Element>
+                                      </Mapping>
+                                    </Parameter>
+                                    <Parameter ParameterId="2000" type="std:ARRAY[0..2] OF WORD">
+                                      <Attributes channel="output" />
+                                      <Value name="_x0032_000_0_0_0" visiblename="Input Registers[0]">
+                                        <Element name="_x0032_000_0_0_0_0" visiblename="Bit0">FALSE</Element>
+                                        <Element name="_x0032_000_0_0_0_1" visiblename="Bit1">FALSE</Element>
+                                        <Element name="_x0032_000_0_0_0_2" visiblename="Bit2">FALSE</Element>
+                                        <Element name="_x0032_000_0_0_0_3" visiblename="Bit3">FALSE</Element>
+                                        <Element name="_x0032_000_0_0_0_4" visiblename="Bit4">FALSE</Element>
+                                        <Element name="_x0032_000_0_0_0_5" visiblename="Bit5">FALSE</Element>
+                                        <Element name="_x0032_000_0_0_0_6" visiblename="Bit6">FALSE</Element>
+                                        <Element name="_x0032_000_0_0_0_7" visiblename="Bit7">FALSE</Element>
+                                        <Element name="_x0032_000_0_0_0_8" visiblename="Bit8">FALSE</Element>
+                                        <Element name="_x0032_000_0_0_0_9" visiblename="Bit9">FALSE</Element>
+                                        <Element name="_x0032_000_0_0_0_10" visiblename="Bit10">FALSE</Element>
+                                        <Element name="_x0032_000_0_0_0_11" visiblename="Bit11">FALSE</Element>
+                                        <Element name="_x0032_000_0_0_0_12" visiblename="Bit12">FALSE</Element>
+                                        <Element name="_x0032_000_0_0_0_13" visiblename="Bit13">FALSE</Element>
+                                        <Element name="_x0032_000_0_0_0_14" visiblename="Bit14">FALSE</Element>
+                                        <Element name="_x0032_000_0_0_0_15" visiblename="Bit15">FALSE</Element>
+                                      </Value>
+                                      <Value name="_x0032_000_1_0_0" visiblename="Input Registers[1]">
+                                        <Element name="_x0032_000_1_0_0_0" visiblename="Bit0">FALSE</Element>
+                                        <Element name="_x0032_000_1_0_0_1" visiblename="Bit1">FALSE</Element>
+                                        <Element name="_x0032_000_1_0_0_2" visiblename="Bit2">FALSE</Element>
+                                        <Element name="_x0032_000_1_0_0_3" visiblename="Bit3">FALSE</Element>
+                                        <Element name="_x0032_000_1_0_0_4" visiblename="Bit4">FALSE</Element>
+                                        <Element name="_x0032_000_1_0_0_5" visiblename="Bit5">FALSE</Element>
+                                        <Element name="_x0032_000_1_0_0_6" visiblename="Bit6">FALSE</Element>
+                                        <Element name="_x0032_000_1_0_0_7" visiblename="Bit7">FALSE</Element>
+                                        <Element name="_x0032_000_1_0_0_8" visiblename="Bit8">FALSE</Element>
+                                        <Element name="_x0032_000_1_0_0_9" visiblename="Bit9">FALSE</Element>
+                                        <Element name="_x0032_000_1_0_0_10" visiblename="Bit10">FALSE</Element>
+                                        <Element name="_x0032_000_1_0_0_11" visiblename="Bit11">FALSE</Element>
+                                        <Element name="_x0032_000_1_0_0_12" visiblename="Bit12">FALSE</Element>
+                                        <Element name="_x0032_000_1_0_0_13" visiblename="Bit13">FALSE</Element>
+                                        <Element name="_x0032_000_1_0_0_14" visiblename="Bit14">FALSE</Element>
+                                        <Element name="_x0032_000_1_0_0_15" visiblename="Bit15">FALSE</Element>
+                                      </Value>
+                                      <Value name="_x0032_000_2_0_0" visiblename="Input Registers[2]">
+                                        <Element name="_x0032_000_2_0_0_0" visiblename="Bit0">FALSE</Element>
+                                        <Element name="_x0032_000_2_0_0_1" visiblename="Bit1">FALSE</Element>
+                                        <Element name="_x0032_000_2_0_0_2" visiblename="Bit2">FALSE</Element>
+                                        <Element name="_x0032_000_2_0_0_3" visiblename="Bit3">FALSE</Element>
+                                        <Element name="_x0032_000_2_0_0_4" visiblename="Bit4">FALSE</Element>
+                                        <Element name="_x0032_000_2_0_0_5" visiblename="Bit5">FALSE</Element>
+                                        <Element name="_x0032_000_2_0_0_6" visiblename="Bit6">FALSE</Element>
+                                        <Element name="_x0032_000_2_0_0_7" visiblename="Bit7">FALSE</Element>
+                                        <Element name="_x0032_000_2_0_0_8" visiblename="Bit8">FALSE</Element>
+                                        <Element name="_x0032_000_2_0_0_9" visiblename="Bit9">FALSE</Element>
+                                        <Element name="_x0032_000_2_0_0_10" visiblename="Bit10">FALSE</Element>
+                                        <Element name="_x0032_000_2_0_0_11" visiblename="Bit11">FALSE</Element>
+                                        <Element name="_x0032_000_2_0_0_12" visiblename="Bit12">FALSE</Element>
+                                        <Element name="_x0032_000_2_0_0_13" visiblename="Bit13">FALSE</Element>
+                                        <Element name="_x0032_000_2_0_0_14" visiblename="Bit14">FALSE</Element>
+                                        <Element name="_x0032_000_2_0_0_15" visiblename="Bit15">FALSE</Element>
+                                      </Value>
+                                      <Name>Input Registers</Name>
+                                      <Mapping>
+                                        <Element name="_x0032_000_0_0_0">Application.FIO.oGreen</Element>
+                                        <Element name="_x0032_000_1_0_0">Application.FIO.oBlue</Element>
+                                        <Element name="_x0032_000_2_0_0">Application.FIO.oMetal</Element>
+                                      </Mapping>
+                                    </Parameter>
+                                    <Parameter ParameterId="3000" type="std:ARRAY[0..1] OF BYTE">
+                                      <Attributes channel="input" />
+                                      <Value name="_x0033_000_0_0_0" visiblename="Coils[0]">
+                                        <Element name="_x0033_000_0_0_0_0" visiblename="Bit0">FALSE</Element>
+                                        <Element name="_x0033_000_0_0_0_1" visiblename="Bit1">FALSE</Element>
+                                        <Element name="_x0033_000_0_0_0_2" visiblename="Bit2">FALSE</Element>
+                                        <Element name="_x0033_000_0_0_0_3" visiblename="Bit3">FALSE</Element>
+                                        <Element name="_x0033_000_0_0_0_4" visiblename="Bit4">FALSE</Element>
+                                        <Element name="_x0033_000_0_0_0_5" visiblename="Bit5">FALSE</Element>
+                                        <Element name="_x0033_000_0_0_0_6" visiblename="Bit6">FALSE</Element>
+                                        <Element name="_x0033_000_0_0_0_7" visiblename="Bit7">FALSE</Element>
+                                      </Value>
+                                      <Value name="_x0033_000_1_0_0" visiblename="Coils[1]">
+                                        <Element name="_x0033_000_1_0_0_0" visiblename="Bit0">FALSE</Element>
+                                        <Element name="_x0033_000_1_0_0_1" visiblename="Bit1">FALSE</Element>
+                                        <Element name="_x0033_000_1_0_0_2" visiblename="Bit2" offlineaccess="none">FALSE</Element>
+                                        <Element name="_x0033_000_1_0_0_3" visiblename="Bit3" offlineaccess="none">FALSE</Element>
+                                        <Element name="_x0033_000_1_0_0_4" visiblename="Bit4" offlineaccess="none">FALSE</Element>
+                                        <Element name="_x0033_000_1_0_0_5" visiblename="Bit5" offlineaccess="none">FALSE</Element>
+                                        <Element name="_x0033_000_1_0_0_6" visiblename="Bit6" offlineaccess="none">FALSE</Element>
+                                        <Element name="_x0033_000_1_0_0_7" visiblename="Bit7" offlineaccess="none">FALSE</Element>
+                                      </Value>
+                                      <Name>Coils</Name>
+                                      <Mapping>
+                                        <Element name="_x0033_000_0_0_0">
+                                          <Element name="_x0033_000_0_0_0_0">Application.FIO.iAtExit</Element>
+                                          <Element name="_x0033_000_0_0_0_1">Application.FIO.iAtSensor</Element>
+                                          <Element name="_x0033_000_0_0_0_2">Application.FIO.iRunning</Element>
+                                          <Element name="_x0033_000_0_0_0_3">Application.FIO.iAtEnd</Element>
+                                          <Element name="_x0033_000_0_0_0_4">Application.FIO.iAutomatic</Element>
+                                          <Element name="_x0033_000_0_0_0_5">Application.FIO.iManual</Element>
+                                          <Element name="_x0033_000_0_0_0_6">Application.FIO.iStart</Element>
+                                          <Element name="_x0033_000_0_0_0_7">Application.FIO.iStop</Element>
+                                        </Element>
+                                        <Element name="_x0033_000_1_0_0">
+                                          <Element name="_x0033_000_1_0_0_0">Application.FIO.iReset</Element>
+                                          <Element name="_x0033_000_1_0_0_1">Application.FIO.iEmergencyStop</Element>
+                                        </Element>
+                                      </Mapping>
+                                    </Parameter>
+                                    <Parameter ParameterId="4000" type="std:ARRAY[0..1] OF BYTE">
+                                      <Attributes channel="output" />
+                                      <Value name="_x0034_000_0_0_0" visiblename="Discrete Inputs[0]">
+                                        <Element name="_x0034_000_0_0_0_0" visiblename="Bit0">FALSE</Element>
+                                        <Element name="_x0034_000_0_0_0_1" visiblename="Bit1">FALSE</Element>
+                                        <Element name="_x0034_000_0_0_0_2" visiblename="Bit2">FALSE</Element>
+                                        <Element name="_x0034_000_0_0_0_3" visiblename="Bit3">FALSE</Element>
+                                        <Element name="_x0034_000_0_0_0_4" visiblename="Bit4">FALSE</Element>
+                                        <Element name="_x0034_000_0_0_0_5" visiblename="Bit5">FALSE</Element>
+                                        <Element name="_x0034_000_0_0_0_6" visiblename="Bit6">FALSE</Element>
+                                        <Element name="_x0034_000_0_0_0_7" visiblename="Bit7">FALSE</Element>
+                                      </Value>
+                                      <Value name="_x0034_000_1_0_0" visiblename="Discrete Inputs[1]">
+                                        <Element name="_x0034_000_1_0_0_0" visiblename="Bit0">FALSE</Element>
+                                        <Element name="_x0034_000_1_0_0_1" visiblename="Bit1">FALSE</Element>
+                                        <Element name="_x0034_000_1_0_0_2" visiblename="Bit2">FALSE</Element>
+                                        <Element name="_x0034_000_1_0_0_3" visiblename="Bit3">FALSE</Element>
+                                        <Element name="_x0034_000_1_0_0_4" visiblename="Bit4">FALSE</Element>
+                                        <Element name="_x0034_000_1_0_0_5" visiblename="Bit5">FALSE</Element>
+                                        <Element name="_x0034_000_1_0_0_6" visiblename="Bit6" offlineaccess="none">FALSE</Element>
+                                        <Element name="_x0034_000_1_0_0_7" visiblename="Bit7" offlineaccess="none">FALSE</Element>
+                                      </Value>
+                                      <Name>Discrete Inputs</Name>
+                                      <Mapping>
+                                        <Element name="_x0034_000_0_0_0">
+                                          <Element name="_x0034_000_0_0_0_0">Application.FIO.oEntryConveyor</Element>
+                                          <Element name="_x0034_000_0_0_0_1">Application.FIO.oExitConveyor</Element>
+                                          <Element name="_x0034_000_0_0_0_2">Application.FIO.oBlueSorterTurn</Element>
+                                          <Element name="_x0034_000_0_0_0_3">Application.FIO.oBlueSorterBelt</Element>
+                                          <Element name="_x0034_000_0_0_0_4">Application.FIO.oGreenSorterTurn</Element>
+                                          <Element name="_x0034_000_0_0_0_5">Application.FIO.oGreenSorterBelt</Element>
+                                          <Element name="_x0034_000_0_0_0_6">Application.FIO.oMetalSorterTurn</Element>
+                                          <Element name="_x0034_000_0_0_0_7">Application.FIO.oMetalSorterBelt</Element>
+                                        </Element>
+                                        <Element name="_x0034_000_1_0_0">
+                                          <Element name="_x0034_000_1_0_0_0">Application.FIO.oStartLight</Element>
+                                          <Element name="_x0034_000_1_0_0_1">Application.FIO.oStopLight</Element>
+                                          <Element name="_x0034_000_1_0_0_2">Application.FIO.oResetLight</Element>
+                                          <Element name="_x0034_000_1_0_0_3">Application.FIO.oStackRed</Element>
+                                          <Element name="_x0034_000_1_0_0_4">Application.FIO.oStackYellow</Element>
+                                          <Element name="_x0034_000_1_0_0_5">Application.FIO.oStackGreen</Element>
+                                        </Element>
+                                      </Mapping>
+                                    </Parameter>
+                                    <Parameter ParameterId="1879052288" type="std:UDINT" IndexInDevDesc="23">
+                                      <Attributes download="false" offlineaccess="read" onlineaccess="read" />
+                                      <Value name="_x0031_879052288" visiblename="ConfigVersion" offlineaccess="read" onlineaccess="read">16#03051000</Value>
+                                      <Name>ConfigVersion</Name>
+                                    </Parameter>
+                                  </HostParameterSet>
+                                </Connector>
+                                <DeviceParameterSet />
+                              </DeviceType>
+                            </Device>
+                          </data>
+                          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                            <ObjectId>4f97b952-7c76-4a79-8ec9-cd6d790343b6</ObjectId>
+                          </data>
+                        </addData>
+                      </configuration>
+                    </configurations>
+                  </data>
+                  <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                    <ObjectId>f79caa41-65ea-48b3-897e-5120b86d9823</ObjectId>
+                  </data>
+                </addData>
+              </configuration>
+            </configurations>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>fe297f53-6bf6-46e0-94fa-d176081570c6</ObjectId>
+          </data>
+        </addData>
+      </configuration>
+    </configurations>
+  </instances>
+  <addData>
+    <data name="http://www.3s-software.com/plcopenxml/projectstructure" handleUnknown="discard">
+      <ProjectStructure>
+        <Object Name="Device" ObjectId="fe297f53-6bf6-46e0-94fa-d176081570c6">
+          <Object Name="Application" ObjectId="6dbc1a7e-b7dc-4741-960a-0b50516a51a0">
+            <Object Name="Library Manager" ObjectId="51fa8caa-9ca2-429a-8715-3100934cd6f1" />
+            <Object Name="PLC_PRG" ObjectId="bf44b6c6-897e-436a-af76-052732d3ed96" />
+            <Object Name="MainTask" ObjectId="9a8dbe83-3048-41c5-bf89-9f3a122593a5" />
+            <Object Name="FIO" ObjectId="160da4f9-c7a4-4e54-89ea-4ed883fd7658" />
+          </Object>
+          <Object Name="Ethernet" ObjectId="f79caa41-65ea-48b3-897e-5120b86d9823">
+            <Object Name="ModbusTCP_Server_Device" ObjectId="4f97b952-7c76-4a79-8ec9-cd6d790343b6" />
+          </Object>
+        </Object>
+      </ProjectStructure>
+    </data>
+  </addData>
+</project>
