@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Symbolconfiguration xmlns="http://www.3s-software.com/schemas/Symbolconfiguration.xsd">
+  <Header>
+    <Version>3.5.14.0</Version>
+    <SymbolConfigObject version="4.6.1.0" runtimeid="3.5.21.30" libversion="4.6.0.0" compiler="3.5.21.30" lmm="3.5.21.30" profile="CODESYS V3.5 SP21 Patch 3+" settings="SupportOPCUA, LayoutCalculator=OptimizedClientSideLayoutCalculator" />
+    <ProjectInfo name="SortingItemsByColour" devicename="Device" appname="Application" />
+  </Header>
+  <TypeList>
+    <TypeUserDef name="T_CAADiagTreeBase" size="0" nativesize="56" typeclass="Userdef" pouclass="FUNCTION_BLOCK" iecname="CAADiagTreeBase" />
+    <TypeUserDef name="T_IoDrvBase" size="0" nativesize="320" typeclass="Userdef" pouclass="FUNCTION_BLOCK" iecname="IoDrvBase" />
+    <TypeSimple name="T_BOOL" size="1" swapsize="0" typeclass="Bool" iecname="BOOL" />
+    <TypeSimple name="T_BYTE" size="1" swapsize="1" typeclass="Byte" iecname="BYTE" />
+    <TypeUserDef name="T_CAADiagDeviceDefault" size="0" nativesize="120" typeclass="Userdef" pouclass="FUNCTION_BLOCK" iecname="CAADiagDeviceDefault" basetype="T_CAADiagTreeBase" />
+    <TypeSimple name="T_DINT" size="4" swapsize="4" typeclass="DInt" iecname="DINT" />
+    <TypeSimple name="T_DWORD" size="4" swapsize="4" typeclass="DWord" iecname="DWORD" />
+    <TypeSimple name="T_INT" size="2" swapsize="2" typeclass="Int" iecname="INT" />
+    <TypeSimple name="T_LWORD" size="8" swapsize="8" typeclass="LWord" iecname="LWORD" />
+    <TypeSimple name="T_UDINT" size="4" swapsize="4" typeclass="UDInt" iecname="UDINT" />
+    <TypeSimple name="T_UINT" size="2" swapsize="2" typeclass="UInt" iecname="UINT" />
+    <TypeSimple name="T_WORD" size="2" swapsize="2" typeclass="Word" iecname="WORD" />
+    <TypeArray name="T_ARRAY__0__2__OF_DED_INode" size="24" nativesize="24" typeclass="Array" iecname="ARRAY [0..2] OF DED.INode" basetype="T_TYPE_REFERENCE">
+      <ArrayDim minrange="0" maxrange="2" />
+    </TypeArray>
+    <TypeUserDef name="T_EthernetState" size="2" nativesize="2" swapsize="2" typeclass="Enum" iecname="EthernetState" basetype="T_INT">
+      <UserDefElement type="T_EthernetState" iecname="NOT_CONFIGURED" enumvalue="0" />
+      <UserDefElement type="T_EthernetState" iecname="CONFIGURED" enumvalue="1" />
+      <UserDefElement type="T_EthernetState" iecname="DISCONNECTED" enumvalue="2" />
+      <UserDefElement type="T_EthernetState" iecname="RUNNING" enumvalue="3" />
+      <UserDefElement type="T_EthernetState" iecname="ERROR" enumvalue="4" />
+      <UserDefElement type="T_EthernetState" iecname="SET_IP_ERROR" enumvalue="5" />
+    </TypeUserDef>
+    <TypeUserDef name="T_F_TRIG" size="2" nativesize="16" typeclass="Userdef" pouclass="FUNCTION_BLOCK" iecname="F_TRIG">
+      <UserDefElement iecname="CLK" type="T_BOOL" byteoffset="0" vartype="VAR_INPUT" access="ReadWrite" />
+      <UserDefElement iecname="Q" type="T_BOOL" byteoffset="1" vartype="VAR_OUTPUT" access="ReadWrite" />
+    </TypeUserDef>
+    <TypeUserDef name="T_ModbusTCPDeviceDiag" size="13" nativesize="22792" typeclass="Userdef" pouclass="FUNCTION_BLOCK" iecname="ModbusTCPDeviceDiag" basetype="T_CAADiagDeviceDefault">
+      <UserDefElement iecname="xEnable" type="T_BOOL" byteoffset="0" vartype="VAR_INPUT" access="ReadWrite" />
+      <UserDefElement iecname="xOnline" type="T_BOOL" byteoffset="1" vartype="VAR_OUTPUT" access="ReadWrite" />
+      <UserDefElement iecname="xInternalError" type="T_BOOL" byteoffset="2" vartype="VAR_OUTPUT" access="ReadWrite" />
+      <UserDefElement iecname="ErrorCode" type="T_UDINT" byteoffset="4" vartype="VAR_OUTPUT" access="ReadWrite" />
+      <UserDefElement iecname="Port" type="T_UINT" byteoffset="8" vartype="VAR_OUTPUT" access="ReadWrite" />
+      <UserDefElement iecname="uiClientConnections" type="T_UINT" byteoffset="10" vartype="VAR_OUTPUT" access="ReadWrite" />
+      <UserDefElement iecname="xTimeout" type="T_BOOL" byteoffset="12" vartype="VAR_OUTPUT" access="ReadWrite" />
+    </TypeUserDef>
+    <TypeSimple name="T_POINTER_TO_BYTE" size="8" swapsize="8" typeclass="Pointer" iecname="POINTER TO BYTE" />
+    <TypeSimple name="T_POINTER_TO_IoConfigChannelMap" size="8" swapsize="8" typeclass="Pointer" iecname="POINTER TO IoConfigChannelMap" />
+    <TypeSimple name="T_POINTER_TO_IoConfigConnector" size="8" swapsize="8" typeclass="Pointer" iecname="POINTER TO IoConfigConnector" />
+    <TypeSimple name="T_POINTER_TO_IoConfigConnectorMap" size="8" swapsize="8" typeclass="Pointer" iecname="POINTER TO IoConfigConnectorMap" />
+    <TypeSimple name="T_POINTER_TO_IoConfigParameter" size="8" swapsize="8" typeclass="Pointer" iecname="POINTER TO IoConfigParameter" />
+    <TypeSimple name="T_POINTER_TO_IoConfigTaskMap" size="8" swapsize="8" typeclass="Pointer" iecname="POINTER TO IoConfigTaskMap" />
+    <TypeUserDef name="T_R_TRIG" size="2" nativesize="16" typeclass="Userdef" pouclass="FUNCTION_BLOCK" iecname="R_TRIG">
+      <UserDefElement iecname="CLK" type="T_BOOL" byteoffset="0" vartype="VAR_INPUT" access="ReadWrite" />
+      <UserDefElement iecname="Q" type="T_BOOL" byteoffset="1" vartype="VAR_OUTPUT" access="ReadWrite" />
+    </TypeUserDef>
+    <TypeSimple name="T_XWORD" size="8" swapsize="8" typeclass="LWord" iecname="XWORD" aliasedtype="T_LWORD" aliasediecname="LWORD" />
+    <TypeUserDef name="T_IoConfigChannelMap" size="32" nativesize="32" typeclass="Userdef" pouclass="STRUCTURE" iecname="IoConfigChannelMap">
+      <UserDefElement iecname="pParameter" type="T_POINTER_TO_IoConfigParameter" byteoffset="0" vartype="VAR" access="ReadWrite" />
+      <UserDefElement iecname="pbyIecAddress" type="T_POINTER_TO_BYTE" byteoffset="8" vartype="VAR" access="ReadWrite" />
+      <UserDefElement iecname="wParameterBitOffset" type="T_WORD" byteoffset="16" vartype="VAR" access="ReadWrite" />
+      <UserDefElement iecname="wIecAddressBitOffset" type="T_WORD" byteoffset="18" vartype="VAR" access="ReadWrite" />
+      <UserDefElement iecname="wSize" type="T_WORD" byteoffset="20" vartype="VAR" access="ReadWrite" />
+      <UserDefElement iecname="wDummy" type="T_WORD" byteoffset="22" vartype="VAR" access="ReadWrite" />
+      <UserDefElement iecname="dwDriverSpecific" type="T_XWORD" byteoffset="24" vartype="VAR" access="ReadWrite" />
+    </TypeUserDef>
+    <TypeUserDef name="T_IoConfigConnectorMap" size="32" nativesize="32" typeclass="Userdef" pouclass="STRUCTURE" iecname="IoConfigConnectorMap">
+      <UserDefElement iecname="pConnector" type="T_POINTER_TO_IoConfigConnector" byteoffset="0" vartype="VAR" access="ReadWrite" />
+      <UserDefElement iecname="dwIoMgrSpecific" type="T_XWORD" byteoffset="8" vartype="VAR" access="ReadWrite" />
+      <UserDefElement iecname="dwNumOfChannels" type="T_DWORD" byteoffset="16" vartype="VAR" access="ReadWrite" />
+      <UserDefElement iecname="pChannelMapList" type="T_POINTER_TO_IoConfigChannelMap" byteoffset="24" vartype="VAR" access="ReadWrite" />
+    </TypeUserDef>
+    <TypeUserDef name="T_IoConfigParameter" size="32" nativesize="32" typeclass="Userdef" pouclass="STRUCTURE" iecname="IoConfigParameter">
+      <UserDefElement iecname="dwParameterId" type="T_DWORD" byteoffset="0" vartype="VAR" access="ReadWrite" />
+      <UserDefElement iecname="dwValue" type="T_XWORD" byteoffset="8" vartype="VAR" access="ReadWrite" />
+      <UserDefElement iecname="wType" type="T_WORD" byteoffset="16" vartype="VAR" access="ReadWrite" />
+      <UserDefElement iecname="wLen" type="T_WORD" byteoffset="18" vartype="VAR" access="ReadWrite" />
+      <UserDefElement iecname="dwFlags" type="T_DWORD" byteoffset="20" vartype="VAR" access="ReadWrite" />
+      <UserDefElement iecname="dwDriverSpecific" type="T_XWORD" byteoffset="24" vartype="VAR" access="ReadWrite" />
+    </TypeUserDef>
+    <TypeUserDef name="T_IoConfigTaskMap" size="16" nativesize="16" typeclass="Userdef" pouclass="STRUCTURE" iecname="IoConfigTaskMap">
+      <UserDefElement iecname="dwTaskId" type="T_DWORD" byteoffset="0" vartype="VAR" access="ReadWrite" />
+      <UserDefElement iecname="wType" type="T_WORD" byteoffset="4" vartype="VAR" access="ReadWrite" />
+      <UserDefElement iecname="wNumOfConnectorMap" type="T_WORD" byteoffset="6" vartype="VAR" access="ReadWrite" />
+      <UserDefElement iecname="pConnectorMapList" type="T_POINTER_TO_IoConfigConnectorMap" byteoffset="8" vartype="VAR" access="ReadWrite" />
+    </TypeUserDef>
+    <TypeUserDef name="T_IoDrvEthernet" size="2" nativesize="904" typeclass="Userdef" pouclass="FUNCTION_BLOCK" iecname="IoDrvEthernet" basetype="T_IoDrvBase">
+      <UserDefElement iecname="eState" type="T_EthernetState" byteoffset="0" vartype="VAR_OUTPUT" access="ReadWrite" />
+    </TypeUserDef>
+    <TypeSimple name="T_RTS_IEC_HANDLE" size="8" swapsize="8" typeclass="Pointer" iecname="RTS_IEC_HANDLE" aliasedtype="T_POINTER_TO_BYTE" aliasediecname="POINTER TO BYTE" />
+    <TypeUserDef name="T_IoConfigConnector" size="40" nativesize="40" typeclass="Userdef" pouclass="STRUCTURE" iecname="IoConfigConnector">
+      <UserDefElement iecname="wType" type="T_WORD" byteoffset="0" vartype="VAR" access="ReadWrite" />
+      <UserDefElement iecname="wOptions" type="T_WORD" byteoffset="2" vartype="VAR" access="ReadWrite" />
+      <UserDefElement iecname="dwFlags" type="T_DWORD" byteoffset="4" vartype="VAR" access="ReadWrite" />
+      <UserDefElement iecname="hIoDrv" type="T_RTS_IEC_HANDLE" byteoffset="8" vartype="VAR" access="ReadWrite" />
+      <UserDefElement iecname="dwNumOfParameters" type="T_DWORD" byteoffset="16" vartype="VAR" access="ReadWrite" />
+      <UserDefElement iecname="pParameterList" type="T_POINTER_TO_IoConfigParameter" byteoffset="24" vartype="VAR" access="ReadWrite" />
+      <UserDefElement iecname="pFather" type="T_POINTER_TO_IoConfigConnector" byteoffset="32" vartype="VAR" access="ReadWrite" />
+    </TypeUserDef>
+    <TypeUserDef name="T_IoDrvEthernetDiag" size="2" nativesize="1072" typeclass="Userdef" pouclass="FUNCTION_BLOCK" iecname="IoDrvEthernetDiag" basetype="T_IoDrvEthernet">
+      <UserDefElement iecname="eState" type="T_EthernetState" byteoffset="0" vartype="VAR_OUTPUT" inherited_from="T_IoDrvEthernet" access="ReadWrite" />
+    </TypeUserDef>
+    <TypeSimple name="T_TYPE_REFERENCE" size="8" swapsize="8" typeclass="Userdef" iecname="TYPE_REFERENCE" />
+  </TypeList>
+  <NodeList>
+    <Node name="Application">
+      <Node name="IoConfig_Globals">
+        <Node name="CAADEDTemp" type="T_POINTER_TO_BYTE" access="ReadWrite" />
+        <Node name="Device" type="T_CAADiagDeviceDefault" access="ReadWrite" />
+        <Node name="DeviceNodes" type="T_ARRAY__0__2__OF_DED_INode" access="ReadWrite" />
+        <Node name="Ethernet" type="T_IoDrvEthernetDiag" access="ReadWrite" />
+        <Node name="ModbusTCP_Server_Device" type="T_ModbusTCPDeviceDiag" access="ReadWrite" />
+        <Node name="nIoConfigTaskMapCount" type="T_DINT" access="ReadWrite" />
+        <Node name="pIoConfigTaskMap" type="T_POINTER_TO_IoConfigTaskMap" access="ReadWrite" />
+      </Node>
+      <Node name="PLC_PRG">
+        <Node name="BlueCount" type="T_WORD" access="ReadWrite" />
+        <Node name="ExitConveyorStopped" type="T_F_TRIG" access="ReadWrite" />
+        <Node name="GreenCount" type="T_WORD" access="ReadWrite" />
+        <Node name="ItemAtSensor" type="T_BOOL" access="ReadWrite" />
+        <Node name="ItemDetected" type="T_R_TRIG" access="ReadWrite" />
+        <Node name="ItemEnteringExitConveyor" type="T_R_TRIG" access="ReadWrite" />
+        <Node name="ItemLeftEntryConveyor" type="T_F_TRIG" access="ReadWrite" />
+        <Node name="ItemLeftExitConveyor" type="T_R_TRIG" access="ReadWrite" />
+        <Node name="MetalCount" type="T_WORD" access="ReadWrite" />
+        <Node name="ResetPressed" type="T_R_TRIG" access="ReadWrite" />
+        <Node name="SceneStarted" type="T_R_TRIG" access="ReadWrite" />
+        <Node name="StartPressed" type="T_R_TRIG" access="ReadWrite" />
+        <Node name="StopPressed" type="T_R_TRIG" access="ReadWrite" />
+        <Node name="SwitchedToAutomatic" type="T_R_TRIG" access="ReadWrite" />
+      </Node>
+    </Node>
+  </NodeList>
+</Symbolconfiguration>
